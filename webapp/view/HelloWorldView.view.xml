@@ -1,21 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mvc:View xmlns:mvc="sap.ui.core.mvc"
-  xmlns="sap.m"
-  xmlns:layout="sap.ui.layout"
-  xmlns:form="sap.ui.layout.form"
-  xmlns:core="sap.ui.core"
-  xmlns:richtexteditor="sap.ui.richtexteditor"
-  xmlns:viz="sap.viz.ui5"
-  controllerName="preview.app.controller.HelloWorldView"
-  displayBlock="true">
-  <Page title="HelloWorldView" enableScrolling="true">
-    <content>
-      <Title id="title_lgb0eq11" text="Hello World"/>
-      <form:SimpleForm id="formContainer">
-        <form:content>
-          <!-- Empty SimpleForm content -->
-        </form:content>
-      </form:SimpleForm>
-    </content>
-  </Page>
+<mvc:View
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:layout="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form"
+	controllerName="converted.helloworldview.controller.HelloWorldView"
+	displayBlock="true"
+          xmlns:commons="sap.ui.commons">
+	<Page title="Material Data">
+		<content>
+			<form:SimpleForm id="materialDataForm" editable="true" labelSpanL="3" labelSpanM="3" emptySpanL="9" emptySpanM="9"
+				adjustLabelSpan="false">
+				<form:content>
+					<Label text="Material Number:" />
+					<Input value="{materialData>/materialNumber}" />
+					<Label text="Created On:" />
+					<DatePicker value="{materialData>/createdOn}" />
+					<Label text="Created Time:" />
+					<Input value="{materialData>/createdTime}" />
+					<Label text="Created By:" />
+					<Input value="{materialData>/createdBy}" />
+					<Label text="Material Type:" />
+					<Input value="{materialData>/materialType}" />
+					<Label text="Material Group:" />
+					<Input value="{materialData>/materialGroup}" />
+					<Label text="Radio Button Group:" />
+					<RadioButtonGroup selectedKey="{materialData>/radioButtonGroup}" >
+						<buttons>
+							<RadioButton text="radio1" key="radio1"/>
+							<RadioButton text="radio2" key="radio2"/>
+							<RadioButton text="radio3" key="radio3"/>
+						</buttons>
+					</RadioButtonGroup>
+					<CheckBox text="CHECKBOX 1" />
+					<CheckBox text="CHECKBOX 2" />
+				</form:content>
+				<form:buttons>
+					<Button text="GET DATA" press="onGetData" />
+					<Button text="EXIT" press="onExit" />
+				</form:buttons>
+			</form:SimpleForm>
+		</content>
+	</Page>
 </mvc:View>
