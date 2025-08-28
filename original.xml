@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebDynpro xmlns="http://www.sap.com/wd/webdynpro">
+  <View name="HelloWorldView">
+    <Title>Hello World</Title>
+    <FormContainer id="formContainer">
+      <FormElement id="formElement1">
+        <Label id="label1" text="Enter your name:"/>
+        <InputField id="inputField1" value="{/data/userName}"/>
+      </FormElement>
+      <FormElement id="formElement2">
+        <Button id="button1" text="Say Hello" press="handleSayHello"/>
+      </FormElement>
+      <FormElement id="formElement3">
+        <TextView id="textView1" text="{/data/greeting}"/>
+      </FormElement>
+      <MessageArea id="messageArea"/>
+    </FormContainer>
+  </View>
+  <Controller name="HelloWorldViewController">
+    <Context>
+      <Node name="data">
+        <Attribute name="userName" type="string"/>
+        <Attribute name="greeting" type="string"/>
+      </Node>
+    </Context>
+    <Method name="handleSayHello">
+      <![CDATA[
+        // Get the user's name from the input field.
+        String userName = wdContext.nodeData().bindUserName().getString();
+
+        // Create the greeting message.
+        String greeting = "Hello, " + userName + "!";
+
+        // Set the greeting message in the context.
+        wdContext.nodeData().bindGreeting().setValue(greeting);
+
+        // Update the UI.
+        wdComponentAPI.refreshUI();
+      ]]>
+    </Method>
+    <Method name="wdDoInit">
+      <![CDATA[
+        // Initialize the context.
+        wdContext.nodeData().bindUserName().setValue("World"); // Test Data
+        wdContext.nodeData().bindGreeting().setValue("");
+      ]]>
+    </Method>
+  </Controller>
+</WebDynpro>
